@@ -52,7 +52,7 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-        it('slide menu is hidden', function() {
+        it('slide menu is hidden at start up', function() {
             var body = document.querySelector('body');
 
             expect(body.classList).toContain('menu-hidden');
@@ -63,6 +63,16 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+
+        it('menu hidden toggle is working.', function() {
+            var body = document.querySelector('body');
+            var burgerIcon = document.querySelector('.menu-icon-link');
+
+            burgerIcon.click();
+            expect(body.classList).not.toBe('menu-hidden');
+            burgerIcon.click();
+        });
+
     });
 
     describe("Initial Entries", function() {
