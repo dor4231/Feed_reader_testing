@@ -101,10 +101,24 @@ $(function() {
 
     describe("New Feed Selection", function() {
 
+        var firstEntryFromFirstFeed;
+
+        beforeEach(function(done) {
+            firstEntryFromFirstFeed = document.querySelector('.feed .entry');
+            loadFeed(2, function(){
+                done();
+            });
+        });
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        it('feed is changing when switching source', function() {
+            var firstEntryFromSecondFeed = document.querySelector('.feed .entry');
+
+            expect(firstEntryFromSecondFeed.innerText).not.toBe(firstEntryFromFirstFeed.innerText);
+        });
+
     });
 }());
