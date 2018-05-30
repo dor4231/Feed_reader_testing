@@ -8,16 +8,16 @@
  * since some of these tests may require DOM elements. We want
  * to ensure they don't run until the DOM is ready.
  */
-$(function() {
-   /* This is our first test suite - a test suite just contains
-    * a related set of tests. This suite is all about the RSS
-    * feeds definitions, the allFeeds variable in our application.
-    */
-    describe('RSS Feeds', function() {
+$(function () {
+    /* This is our first test suite - a test suite just contains
+     * a related set of tests. This suite is all about the RSS
+     * feeds definitions, the allFeeds variable in our application.
+     */
+    describe('RSS Feeds', function () {
         /* Make sure that the allFeeds variable has been defined
          * and that it is not empty.
          */
-        it('are defined', function() {
+        it('are defined', function () {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -25,8 +25,8 @@ $(function() {
         /* Ensures allFeeds has a URL defined and that the URL
          * is not empty.
          */
-        it('urls are defined', function() {
-            allFeeds.forEach(function(rss) {
+        it('urls are defined', function () {
+            allFeeds.forEach(function (rss) {
                 expect(rss.url).toBeDefined();
             })
         });
@@ -35,27 +35,27 @@ $(function() {
         /* Ensures allFeeds has a name defined
          * and that the name is not empty.
          */
-        it('names are defined', function() {
-            allFeeds.forEach(function(rss) {
+        it('names are defined', function () {
+            allFeeds.forEach(function (rss) {
                 expect(rss.name).toBeDefined();
             })
         });
     });
 
-    describe("The menu", function() {
+    describe("The menu", function () {
 
         /* Test side menu is hidden by default.
          */
-        it('slide menu is hidden at start up', function() {
+        it('slide menu is hidden at start up', function () {
             var body = document.querySelector('body');
 
             expect(body.classList).toContain('menu-hidden');
         });
 
-         /* Test the visibility when the menu icon is clicked.
-          */
+        /* Test the visibility when the menu icon is clicked.
+         */
 
-        it('menu hidden toggle is working.', function() {
+        it('menu hidden toggle is working.', function () {
             var body = document.querySelector('body');
             var burgerIcon = document.querySelector('.menu-icon-link');
 
@@ -67,11 +67,11 @@ $(function() {
 
     });
 
-    describe("Initial Entries", function() {
+    describe("Initial Entries", function () {
 
 
-        beforeEach(function(done) {
-            loadFeed(0, function() {
+        beforeEach(function (done) {
+            loadFeed(0, function () {
                 done();
             });
         });
@@ -79,7 +79,7 @@ $(function() {
          * and completes its work, there is at least a single
          * .entry element within the .feed container.
          */
-        it('loadFeed function called and function well', function() {
+        it('loadFeed function called and function well', function () {
             var feed = document.querySelector('.feed');
             var numOfEnteries = feed.getElementsByClassName('entry').length;
 
@@ -88,13 +88,13 @@ $(function() {
 
     });
 
-    describe("New Feed Selection", function() {
+    describe("New Feed Selection", function () {
 
         var firstEntryFromFirstFeed;
 
-        beforeEach(function(done) {
+        beforeEach(function (done) {
             firstEntryFromFirstFeed = document.querySelector('.feed .entry');
-            loadFeed(2, function(){
+            loadFeed(2, function () {
                 done();
             });
         });
@@ -102,7 +102,7 @@ $(function() {
         /* Test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          */
-        it('feed is changing when switching source', function() {
+        it('feed is changing when switching source', function () {
             var firstEntryFromSecondFeed = document.querySelector('.feed .entry');
 
             expect(firstEntryFromSecondFeed.innerText).not.toBe(firstEntryFromFirstFeed.innerText);
