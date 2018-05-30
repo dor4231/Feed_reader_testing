@@ -21,7 +21,3 @@ Running the index.html will run a [Jasmine](http://jasmine.github.io/) spec runn
 * loadFeed function called and function well
 #### New Feed Selection
 * feed is changing when switching source
-
-
-1. Implement error handling for undefined variables and out-of-bound array access.
-3. Review the Feed Reader Testing [Project Rubric](https://review.udacity.com/#!/projects/3442558598/rubric)
