@@ -47,22 +47,22 @@ $(function () {
         /* Test side menu is hidden by default.
          */
         it('slide menu is hidden at start up', function () {
-            var body = document.querySelector('body');
 
-            expect(body.classList).toContain('menu-hidden');
+
+            expect($( "body" ).hasClass( "menu-hidden" )).toBe(true);
         });
 
         /* Test the visibility when the menu icon is clicked.
          */
 
         it('menu hidden toggle is working.', function () {
-            var body = document.querySelector('body');
+            var body = $('body');
             var burgerIcon = document.querySelector('.menu-icon-link');
 
             burgerIcon.click();
-            expect(body.classList).not.toContain('menu-hidden');
+            expect(body.hasClass('menu-hidden')).toBe(false);
             burgerIcon.click();
-            expect(body.classList).toContain('menu-hidden');
+            expect(body.hasClass('menu-hidden')).toBe(true);
         });
 
     });
@@ -80,10 +80,7 @@ $(function () {
          * .entry element within the .feed container.
          */
         it('loadFeed function called and function well', function () {
-            var feed = document.querySelector('.feed');
-            var numOfEnteries = feed.getElementsByClassName('entry').length;
-
-            expect(numOfEnteries).toBeGreaterThan(0);
+            expect($('.feed >').hasClass('entry')).toBe(true);
         });
 
     });
