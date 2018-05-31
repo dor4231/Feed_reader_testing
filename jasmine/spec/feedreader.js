@@ -75,24 +75,29 @@ $(function () {
                 done();
             });
         });
+
         /* Test that ensures when the loadFeed function is called
          * and completes its work, there is at least a single
          * .entry element within the .feed container.
          */
         it('loadFeed function called and function well', function () {
-            expect($('.feed >').hasClass('entry')).toBe(true);
+            expect($('.feed .entry')).toBeDefined();
         });
 
     });
 
     describe("New Feed Selection", function () {
 
-        var firstEntryFromFirstFeed;
+        var prevFeedData, newFeedData;
 
         beforeEach(function (done) {
-            firstEntryFromFirstFeed = document.querySelector('.feed .entry');
-            loadFeed(2, function () {
-                done();
+            firstEntryFromFirstFeed =
+            loadFeed(0, function () {
+                prevFeedData = document.querySelectorAll('.feed .entry');
+                loadFeed(2, function() {
+                    newFeedData = document.querySelectorAll('.feed .entry');
+                    done();
+                })
             });
         });
 
@@ -100,9 +105,12 @@ $(function () {
          * by the loadFeed function that the content actually changes.
          */
         it('feed is changing when switching source', function () {
-            var firstEntryFromSecondFeed = document.querySelector('.feed .entry');
+            for (const pervEntry of prevFeedData) {
+               for (const newEntry of newFeedData ) {
+                   expect(pervEntry.innerText).not.toBe(newEntry.innerText);
+               }
+            }
 
-            expect(firstEntryFromSecondFeed.innerText).not.toBe(firstEntryFromFirstFeed.innerText);
         });
 
     });
